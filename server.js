@@ -39,9 +39,6 @@ app.get('/', (req, res) => {
         message: "<h1>hello world welcome to new ecommerce app</h1>",
     });
 });
-app.get('/' , (req,res) =>{
-    res.send('Welcome to app')
-})
 
 //port
 const PORT = process.env.PORT || 8080 ;
