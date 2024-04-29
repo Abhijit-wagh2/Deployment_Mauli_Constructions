@@ -7,12 +7,18 @@ import router from "./routes/authRoute.js";
 import categoryRoute from "./routes/categoryRoute.js";
 import productRoutes from "./routes/productRoutes.js";
 
+import { fileURLToPath } from "url";
+import cors from "cors";
+import path from 'path';
+
 dotenv.config();
 
 //database config
 connectDB();
-
+const __filename=fileURLToPath(import.meta.url);
+const __dirname=path.dirname(__filename);
 const app = express();
+
 
 //middleware
 app.use(express.json())
@@ -23,6 +29,16 @@ app.use('/api/v1/auth',router);
 app.use('/api/v1/category',categoryRoute);
 app.use('/api/v1/product',productRoutes);
 
+app.use('*',function(req,res){
+    res.sendFile(path.join(__dirname,"./client/build/index.html"))
+})
+
+
+app.get('/', (req, res) => {
+    res.send({
+        message: "<h1>hello world welcome to new ecommerce app</h1>",
+    });
+});
 app.get('/' , (req,res) =>{
     res.send('Welcome to app')
 })
