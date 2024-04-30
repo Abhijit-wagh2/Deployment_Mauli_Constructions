@@ -15,8 +15,8 @@ dotenv.config();
 
 //database config
 connectDB();
-// const __filename=fileURLToPath(import.meta.url);
-// const __dirname=path.dirname(__filename);
+const __filename=fileURLToPath(import.meta.url);
+const __dirname=path.dirname(__filename);
 const app = express();
 
 
@@ -30,7 +30,7 @@ app.use('/api/v1/category',categoryRoute);
 app.use('/api/v1/product',productRoutes);
 
 app.use('*',function(req,res){
-    res.sendFile(path.join(__dirname,"./client/build/index.html"))
+    res.sendFile(path.join(__dirname,"./client/public/index.html"))
 })
 
 
