@@ -11,3 +11,74 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* font-family: 'Poppins', sans-serif; */
+/* font-family: 'Playfair Display', serif; */
+
+/* //navbar css */
+.navbar {
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px -6px gray;
+  --webkit-box-shadow: 0 8px 6px -6px gray;
+  border-bottom: solid gray !important;
+  margin-bottom:20px;
+}
+
+.card2{
+  width:550px;
+  padding:3%;
+  background:rgb(242 242 242);
+}
+
+.card2-header{
+  text-align:center;
+  font-weight:bold;
+  font-size:20px;
+}
+.list-group{
+  margin-left:60px;
+  margin-top:30px;
+}
+.list-group-item{
+  width:200px;
+}
+.card-text_{
+  margin-bottom:10px;
+}
+.nav-link {
+  color:black;
+  font-weight: 300 !important;
+}
+
+.active {
+  color:#fff;
+  border-bottom: 2px solid black;
+}
+
+.navbar-brand {
+  
+  color:black;
+  font-weight: 700;
+  font-family: "roboto", sans-serif;
+  letter-spacing: 3px;
+}
+.card-body{
+  color:black;
+}
+pre{
+  font-family: var(--font-default);
+}
+.card{
+  width:60rem;
+}
