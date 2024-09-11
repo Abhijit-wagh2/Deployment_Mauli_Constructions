@@ -42,11 +42,26 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/ping', (req, res) => {
+    res.send('Pong');
+});
+
 //port
 const PORT = process.env.PORT || 8080 ;
 
 
-//run listen
-app.listen(PORT, () =>{
+// Auto-request to keep server alive
+setInterval(() => {
+    axios.get('https://mauli-constructions.onrender.com/ping')  // Replaced with external URL
+        .then(() => {
+            console.log("Ping successful. Server is alive.".green);
+        })
+        .catch((err) => {
+            console.log("Ping failed.".red, err.message);
+        });
+}, 10 * 60 * 1000); // Ping every 10 minutes
+
+// Run listen
+app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`.bgCyan.white);
-})
+});
