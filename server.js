@@ -7,6 +7,7 @@ import router from "./routes/authRoute.js";
 import categoryRoute from "./routes/categoryRoute.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
+import axios from 'axios';
 import { fileURLToPath } from "url";
 
 import path from 'path';
