@@ -8,52 +8,45 @@ import categoryRoute from "./routes/categoryRoute.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
 import { fileURLToPath } from "url";
+
 import path from 'path';
-import axios from 'axios';  // For making HTTP requests
 
 dotenv.config();
 
-// Database config
+//database config
 connectDB();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename=fileURLToPath(import.meta.url);
+const __dirname=path.dirname(__filename);
 const app = express();
 
-// Middleware
+
+//middleware
 app.use(cors());
-app.use(express.json());
-app.use(morgan('dev'));
+app.use(express.json())
+app.use(morgan('dev'))
+app.use(express.static(path.join(__dirname,"./client/build")))
 
-// Routes
-app.use('/api/v1/auth', router);
-app.use('/api/v1/category', categoryRoute);
-app.use('/api/v1/product', productRoutes);
+//routes
+app.use('/api/v1/auth',router);
+app.use('/api/v1/category',categoryRoute);
+app.use('/api/v1/product',productRoutes);
 
-// Root route
+// app.use('*',function(req,res){
+//     res.sendFile(path.join(__dirname,"./client/build/index.html"))
+// })
+
+
 app.get('/', (req, res) => {
-    res.send("<h1>hello world welcome to new ecommerce app</h1>");
+    res.send({
+        message: "<h1>hello world welcome to new ecommerce app</h1>",
+    });
 });
 
-// Ping route to keep server alive
-app.get('/ping', (req, res) => {
-    res.send('Pong');
-});
+//port
+const PORT = process.env.PORT || 8080 ;
 
-// Port
-const PORT = process.env.PORT || 8080;
 
-// Auto-request to keep server alive
-setInterval(() => {
-    axios.get('https://mauli-constructions.onrender.com/ping')  // Replaced with external URL
-        .then(() => {
-            console.log("Ping successful. Server is alive.".green);
-        })
-        .catch((err) => {
-            console.log("Ping failed.".red, err.message);
-        });
-}, 10 * 60 * 1000); // Ping every 10 minutes
-
-// Run listen
-app.listen(PORT, () => {
+//run listen
+app.listen(PORT, () =>{
     console.log(`Server running on ${PORT}`.bgCyan.white);
-});
+})
