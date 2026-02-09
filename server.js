@@ -25,19 +25,6 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 app.use(morgan('dev'))
-app.use((req, res, next) => {
-    res.setHeader(
-        "Content-Security-Policy",
-        "default-src 'self'; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
-        "style-src 'self' 'unsafe-inline' https:; " +
-        "img-src 'self' data: blob: https:; " +
-        "font-src 'self' data: https:; " +
-        "connect-src 'self' https:; " +
-        "frame-src 'self'"
-    );
-    next();
-});
 app.use(express.static(path.join(__dirname,"./client/build")))
 
 //routes
@@ -51,15 +38,13 @@ app.use('/api/v1/product',productRoutes);
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    res.send({
+        message: "<h1>hello world welcome to new ecommerce app</h1>",
+    });
 });
 
 app.get('/ping', (req, res) => {
     res.send('Pong');
-});
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 //port
