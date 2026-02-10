@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from '../../components/Layout'
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -16,7 +15,7 @@ const Login=()=>{
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post("/api/v1/auth/login", {
+        const res = await axios.post("/api/v1/auth/admin-login", {
           email,
           password,
         });
@@ -42,6 +41,7 @@ const Login=()=>{
         <div className="credentials">
         <form onSubmit={handleSubmit} name="login-form">
                 <h2>ADMIN</h2>
+                <p className="auth-subtitle">Login to access the admin dashboard</p>
                 <div>
                     <input value={email} onChange={(e) => setEmail(e.target.value )}className="input-box" type="email" name="email" id="email" required placeholder="Enter email id"/>
                 </div>
