@@ -1,5 +1,5 @@
 import express from 'express'
-import { loginController, registerController } from '../controllers/authController.js';
+import { adminLoginController, loginController, registerController } from '../controllers/authController.js';
 import { isAdmin, requiredSignIn } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
@@ -8,6 +8,11 @@ const router = express.Router();
 //register || method post
 router.post('/register',registerController);
 router.post('/login',loginController);
+router.post('/admin-login', adminLoginController);
+
+router.get('/admin-auth', requiredSignIn, isAdmin, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
 
 

@@ -19,6 +19,7 @@ import ProjectPage from "./pages/ProjectPage.js";
 import BlogView from "./pages/Admin/Section/BlogView.js";
 import ProjectView from "./pages/Admin/Section/ProjectView.js";
 import ArticleView from "./pages/Admin/Section/ArticleView.js";
+import AdminRoute from "./components/Routes/AdminRoute.js";
 
 function App() {
   return (
@@ -36,7 +37,9 @@ function App() {
 
         <Route path="/login" element={<Login />} />
 
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin" element={<AdminRoute />}>
+          <Route index element={<AdminDashboard />} />
+        </Route>
 
         <Route path="/dashboard/admin/create-product" element={<CreateProduct />} />
 
